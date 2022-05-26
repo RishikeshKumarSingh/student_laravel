@@ -22,18 +22,19 @@ integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmV
                                 <div class="card">
                                         <div class="card-body">
                                                 <h6>Insert Data</h6>
-                                                <form action="" method="post">
+                                                <form action="{{route('store')}}" method="post">
+                                                        @csrf
                                                         <div class="mb-3">
                                                                 <label for="">Name</label>
-                                                                <input type="text" class="form-control">
+                                                                <input type="text" name="name" class="form-control">
                                                         </div>
                                                         <div class="mb-3">
                                                                 <label for="">Contact</label>
-                                                                <input type="text" class="form-control">
+                                                                <input type="text" name="contact" class="form-control">
                                                         </div>
                                                         <div class="mb-3">
                                                                 <label for="">Email</label>
-                                                                <input type="text" class="form-control">
+                                                                <input type="text" name="email" class="form-control">
                                                         </div>
                                                         <div class="mb-3">
                                                                 <input type="submit" class="btn btn-success w-100">
@@ -42,7 +43,26 @@ integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmV
                                         </div>
                                 </div>
                         </div>
-                        <div class="col-9"></div>
+                        <div class="col-9">
+                                <table class="table">
+                                        <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Contact</th>
+                                                <th>Email</th>
+                                                <th>Action</th>
+                                        </tr>
+                                        @foreach($students as $std)
+                                        <tr>
+                                                <td>{{$std->id}}</td>
+                                                <td>{{$std->name}}</td>
+                                                <td>{{$std->contact}}</td>
+                                                <td>{{$std->email}}</td>
+                                                <td><a href="{{route('delete',['id'=>$std->id])}}" class="btn btn-danger">X</a></td>
+                                        </tr>
+                                        @endforeach
+                                </table>
+                        </div>
                 </div>
         </div>
 </body>
